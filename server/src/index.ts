@@ -1,6 +1,8 @@
 import express from 'express';
+import models from './models';
 
 const app = express();
+models.sequelize.sync();
 
 app.set('port', process.env.PORT || 4000);
 
