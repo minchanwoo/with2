@@ -7,7 +7,10 @@ User.init({
   email: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true,
+    unique: {
+      name: 'duplicated user.email',
+      msg: '기존에 가입한 계정입니다',
+    },
   },
   nick: {
     type: DataTypes.STRING(20),
