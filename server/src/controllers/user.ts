@@ -22,7 +22,7 @@ export const login = async (email: string, password: string) => {
     if (!compare) {
         throw new Error('login failed');
     }
-    return true;
+    return UserByEmail;
 }
 
 export const update = async(id, email, nick, name) => {
@@ -30,7 +30,7 @@ export const update = async(id, email, nick, name) => {
         email,
         nick,
         name,
-    },{where: {id: id}})
+    }, { where: { id }})
 }
 
 export const deleteUser = async(id) => {

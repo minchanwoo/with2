@@ -17,8 +17,12 @@ router.post('/login', async(req, res) => {
     const { email, password } = req.body;
 
     try {
-        await login(email, password);
+        const loggedInUser = await login(email, password);
         res.send({ success: true });
+        req.session.user = {
+            id: loggedInUser.id,
+        };
+        req.session.save(() => {/* */});
     } catch (e) {
         res.status(500).send({ error: e.message });
     }
