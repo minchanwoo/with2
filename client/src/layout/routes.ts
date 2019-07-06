@@ -10,8 +10,8 @@ const routes: Array<{header_label?: string, path: string, component: () => JSX.E
     { header_label: 'Login', path: '/login', component: Login },
     { header_label: 'Join', path: '/join', component: Join },
     { header_label: 'MyPage', path: '/mypage', component: MyPage },
-    { header_label: 'Posts', path: '/posts', component: Posts },
-    { path: '/post/:id', component: Post },
+    { header_label: 'Posts', path: '/posts', component: Posts, exact: true },
+    { path: '/posts/:id', component: Post },
 ];
 
 export default routes;

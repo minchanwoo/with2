@@ -1,4 +1,5 @@
 import Post from '../models/post';
+import User from '../models/user';
 
 export async function createPost({ title, text, userId }: { title: string, text: string, userId: number }) {
     const result = await Post.create({
@@ -13,7 +14,11 @@ export const getPosts = async () => {
     return await Post.findAll({
         order: [
             ['id', 'DESC']
-        ]
+        ],
+        include: [{
+            model: User,
+            attributes: ['id', 'name'],
+        }],
     })
 }
 
