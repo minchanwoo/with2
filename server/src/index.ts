@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import session from 'express-session';
 import express from 'express';
 import models from './models';
@@ -11,6 +12,8 @@ app.set('port', process.env.PORT || 4000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cors());
 
 app.use(
     session({
