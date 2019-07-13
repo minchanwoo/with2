@@ -5,6 +5,7 @@ const BASE_URL = 'http://localhost:4000'
 
 const GET_POSTS = 'GET_POSTS';
 const GET_POST = 'GET_POST';
+const LOGIN = 'LOGIN';
 
 export const getPostsAsync = async (dispatch: (action: ActionType) => void) => {
     const result = await axios.get(`${BASE_URL}/posts`)
@@ -42,9 +43,25 @@ export const getPostAsync = async (id: number, dispatch: (action: ActionType) =>
     }
 }
 
+export const loginAsync = async (email: string, password: string, dispatch: (action: ActionType) => void) => {
+    try {
+        const result = await axios.post(`${BASE_URL}/users/login`, { email, password }, { withCredentials: true});
+        dispatch({
+            type: LOGIN,
+            nick: result.data.nick
+        });
+    } catch (e) {
+        dispatch({
+            type: LOGIN,
+            nick: ''
+        });
+    }
+}
+
 const initial_state = {
     posts: [],
     post: DEFAULT_POST,
+    nick: '',
 };
 
 const reducers = (state: StateType = initial_state, action: any) => {
@@ -59,6 +76,11 @@ const reducers = (state: StateType = initial_state, action: any) => {
                 ...state,
                 post: action.post,
             }
+        case LOGIN:
+            return {
+                ...state,
+                nick: action.nick,
+            };
         default:
             return state;
     }

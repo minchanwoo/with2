@@ -13,9 +13,11 @@ export interface ActionType {
     type: string;
     posts?: Post[];
     post?: Post;
+    nick?: string;
 }
 
 export interface StateType {
     posts: Post[]
     post: Post,
+    nick: string,
 }
