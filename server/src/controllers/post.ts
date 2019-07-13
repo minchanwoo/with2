@@ -23,7 +23,13 @@ export const getPosts = async () => {
 }
 
 export const getPost = async(id) => {
-    const post =  await Post.findOne({ where: { id } });
+    const post =  await Post.findOne({ 
+        include: [{
+            model: User,
+            attributes: ['id', 'name']
+        }],
+        where: { id } 
+    });
     if (!post) {
         throw new Error(`post ${id} not exists`);
     }
