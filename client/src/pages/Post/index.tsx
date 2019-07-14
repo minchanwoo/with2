@@ -29,6 +29,7 @@ const Post = (props:any) => {
                             <Button type='dashed' size='small'>
                                 <Link to='/posts'>목록</Link>
                             </Button>
+                            {post.my && <Button type='dashed' size='small'><Link to={`/posts/${id}/edit`}>수정</Link></Button>}
                             {post.my && <Button type='dashed' size='small' onClick={() => switchShowModal(true)}>삭제</Button>}
                         </div>
                     </Card>
