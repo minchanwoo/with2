@@ -2,7 +2,7 @@ import { Table } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPostsAsync } from '../../reducers';
+import { getPostsAsync } from '../../reducers/post';
 import { StateType } from '../../reducers/types';
 
 const columns = [

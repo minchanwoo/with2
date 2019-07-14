@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostAsync, deletePostAsync } from '../../reducers';
 import { StateType } from '../../reducers/types';
 import { Button, Empty, Card, Divider, Modal } from 'antd';
+import { getPostAsync, deletePostAsync } from '../../reducers/post';
 
 const Post = (props:any) => {
     const { match: { params : { id } } } = props;

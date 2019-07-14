@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch } from 'react-redux';
-import { loginAsync } from '../../reducers';
+import { loginAsync } from '../../reducers/user';
 
 const Login = () => {
     const [email, inputEmail] = useState('');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Typography } from 'antd';
 import { useDispatch } from 'react-redux';
-import { joinAsync } from '../../reducers';
+import { joinAsync } from '../../reducers/user';
 
 const Join = () => {
     const [email, inputEmail] = useState('');
