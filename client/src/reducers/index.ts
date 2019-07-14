@@ -58,6 +58,21 @@ export const loginAsync = async (email: string, password: string, dispatch: (act
     }
 }
 
+export const joinAsync = async(value: { email: string, nick: string, name: string, password: string, passwordConfirm: string}, dispatch: (action: ActionType) => void) => {
+    try {
+        const result = await axios.post(`${BASE_URL}/users/signup`, value);
+        dispatch({
+            type: LOGIN,
+            nick: result.data.result.nick,
+        });
+    } catch (e) {
+        dispatch({
+            type: LOGIN,
+            nick: ''
+        });
+    }
+}
+
 const initial_state = {
     posts: [],
     post: DEFAULT_POST,

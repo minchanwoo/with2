@@ -8,6 +8,11 @@ router.post('/signup', async (req, res) => {
     try {
         const result = await signUp({ email, nick, name, password });
         res.send({ result });
+        req.session.user = {
+            id: result.id,
+            nick: result.nick,
+        };
+        req.session.save(() => {/* */});
     } catch (e) {
         res.status(500).send({ error: e.message });
     }
@@ -21,6 +26,7 @@ router.post('/login', async(req, res) => {
         res.send({ success: true, nick: loggedInUser.nick });
         req.session.user = {
             id: loggedInUser.id,
+            nick: loggedInUser.nick,
         };
         req.session.save(() => {/* */});
     } catch (e) {
