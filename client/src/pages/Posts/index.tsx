@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Table, Typography } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -22,6 +22,9 @@ const Posts = () => {
 
     return (
         <div>
+            <Typography.Title>
+                Posts
+            </Typography.Title>
             <Table columns={columns} dataSource={posts.map((post, key) => ({...post, key, user_name: post.user.name}))}/>
         </div>
     );

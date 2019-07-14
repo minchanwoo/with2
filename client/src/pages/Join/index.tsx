@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography } from 'antd';
 import { useDispatch } from 'react-redux';
 import { joinAsync } from '../../reducers/user';
 
-const Join = () => {
+const Join = (props: any) => {
     const [email, inputEmail] = useState('');
     const [nick, inputNick] = useState('');
     const [name, inputName] = useState('');
@@ -14,8 +14,14 @@ const Join = () => {
 
     return (
         <div>
-            <Form onSubmit={(e) => {e.preventDefault(); joinAsync({ email, nick, name, password, passwordConfirm}, dispatch)}}>
-                <Typography.Title>Signup</Typography.Title>
+            <Typography.Title>
+                Join
+            </Typography.Title>
+            <Form onSubmit={(e) => {
+                e.preventDefault(); 
+                joinAsync({ email, nick, name, password, passwordConfirm}, dispatch);
+                props.history.push('/');
+            }}>
                 <Form.Item>
                     <Input placeholder='Email' type='email' value={email} onChange={(e) => inputEmail(e.target.value)}/>
                 </Form.Item>

@@ -38,6 +38,7 @@ const Post = (props:any) => {
                         onOk={() => {
                             deletePostAsync(id, dispatch); 
                             switchShowModal(false);
+                            props.history.push('/posts');
                         }}
                         onCancel={() => switchShowModal(false)}>
                         게시글을 삭제하시겠습니까?

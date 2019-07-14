@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Typography } from 'antd';
 import { useDispatch } from 'react-redux';
 import { loginAsync } from '../../reducers/user';
 
-const Login = () => {
+const Login = (props: any) => {
     const [email, inputEmail] = useState('');
     const [password, inputPassword] = useState('');
 
@@ -11,7 +11,14 @@ const Login = () => {
 
     return (
         <div>
-            <Form onSubmit={(e) => {e.preventDefault(); loginAsync(email, password, dispatch);}}>
+            <Typography.Title>
+                Login
+            </Typography.Title>
+            <Form onSubmit={(e) => {
+                e.preventDefault(); 
+                loginAsync(email, password, dispatch);
+                props.history.push('/');    
+            }}>
                 <Form.Item>
                     <Input placeholder='Email' type='email' value={email} onChange={(e) => inputEmail(e.target.value)}/>
                 </Form.Item>
