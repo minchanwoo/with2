@@ -20,7 +20,11 @@ router.get('/:id', async(req, res) => {
     const id = req.params.id;
     try {
         const post = await getPost(id);
-        res.send({ post })
+        if (req.session && req.session.user && req.session.user.id && post.user.id === req.session.user.id) {
+            res.send({ post, my: true });
+        } else {
+            res.send({ post })
+        }
     } catch (e)  {
         res.status(500).send({ error: e.message });
     }

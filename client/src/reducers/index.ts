@@ -27,10 +27,14 @@ const DEFAULT_POST = {
 
 export const getPostAsync = async (id: number, dispatch: (action: ActionType) => void) => {
     try {
-        const result = await axios.get(`${BASE_URL}/posts/${id}`);
+        const result = await axios.get(`${BASE_URL}/posts/${id}`, { withCredentials: true });
+        const post = {
+            ...result.data.post,
+            my: result.data.my,
+        }
         dispatch({
             type: GET_POST,
-            post: result.data.post,
+            post,
         });
     } catch (e) {
         dispatch({
@@ -40,6 +44,15 @@ export const getPostAsync = async (id: number, dispatch: (action: ActionType) =>
                 error: '존재하지 않는 게시글입니다.',
             },
         });
+    }
+}
+
+export const deletePostAsync = async(id: number, dispatch: (action: ActionType) => void) => {
+    try {
+        await axios.delete(`${BASE_URL}/posts/${id}`, {withCredentials: true});
+        await getPostsAsync(dispatch);
+    } catch (e) {
+        console.log('ERROEE!', JSON.stringify(e));
     }
 }
 

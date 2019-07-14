@@ -7,6 +7,7 @@ export interface Post {
         name: string;
     },
     error?: string;
+    my?: boolean;
 }
 
 export interface ActionType {
